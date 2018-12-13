@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LightBulb</string>
+    <string name="enter_light">Enter light #</string>
+    <string name="ok">Check</string>
+    <string name="light">Light level</string>
+    <string name="roomId">Room ID</string>
+    <string name="lightonoff">Light on/off</string>
+    <string name="ringonoff">Ringer on/off</string>
+    <string name="image_content_description">light picture</string>
+</resources>
