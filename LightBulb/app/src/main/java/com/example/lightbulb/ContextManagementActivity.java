@@ -32,6 +32,13 @@ public class ContextManagementActivity extends Activity {
                 lightContextHttpManager.switchLight(light);
             }
         });
+        ((Button) findViewById(R.id.buttonDelete)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String light = ((EditText) findViewById(R.id.editText1))
+                        .getText().toString();
+                lightContextHttpManager.deleteLight(light);
+            }
+        });
     }
 
 
@@ -52,6 +59,17 @@ public class ContextManagementActivity extends Activity {
         } else {
             ((ImageView) findViewById(R.id.imageView1)).setImageResource(R.drawable.ic_bulb_off);
         }
+
+    }
+
+    public void onDelete(){
+
+
+
+        ((TextView) findViewById(R.id.textViewLightValue)).setText("");
+        ((TextView) findViewById(R.id.textViewRoomIdValue)).setText("");
+
+        ((ImageView) findViewById(R.id.imageView1)).setImageResource(R.drawable.ic_bulb_off);
 
     }
 

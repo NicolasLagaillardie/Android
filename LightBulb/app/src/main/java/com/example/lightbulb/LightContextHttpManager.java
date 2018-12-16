@@ -89,4 +89,30 @@ public class LightContextHttpManager {
         queue.add(contextRequest);
 
     }
+
+    public void deleteLight(final String light){
+
+        String url =  "https://faircorp-paul-breugnot.cleverapps.io/api/lights/" + light + "/switch";
+
+        RequestQueue queue = Volley.newRequestQueue(contextManagementActivity);
+
+        JsonObjectRequest contextRequest = new JsonObjectRequest
+                (Request.Method.PUT, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        contextManagementActivity.onDelete();
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Some error to access URL : Room may not exists...
+                    }
+                });
+        queue.add(contextRequest);
+
+    }
 }

@@ -5,6 +5,6 @@
     <string name="light">Light level</string>
     <string name="roomId">Room ID</string>
     <string name="lightonoff">Light on/off</string>
-    <string name="ringonoff">Ringer on/off</string>
+    <string name="delete">Delete</string>
     <string name="image_content_description">light picture</string>
 </resources>

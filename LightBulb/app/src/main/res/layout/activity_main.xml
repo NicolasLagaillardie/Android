@@ -96,14 +96,14 @@
                 android:text="@string/lightonoff" />
 
             <Button
-                android:id="@+id/buttonSwitchSound"
+                android:id="@+id/buttonDelete"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_marginRight="14dp"
                 android:onClick="switchRinger"
-                android:text="@string/ringonoff" />
+                android:text="@string/delete" />
         </LinearLayout>
 
     </RelativeLayout>
