@@ -86,7 +86,7 @@
         <LinearLayout android:id="@+id/linearLayoutButtons" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true">
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/buttonSwitchLight"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 android:text="@string/lightonoff" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/buttonSwitchSound"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

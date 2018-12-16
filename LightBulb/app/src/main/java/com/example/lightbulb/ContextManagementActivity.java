@@ -25,6 +25,13 @@ public class ContextManagementActivity extends Activity {
                 lightContextHttpManager.retrieveLightContextState(light);
             }
         });
+        ((Button) findViewById(R.id.buttonSwitchLight)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String light = ((EditText) findViewById(R.id.editText1))
+                        .getText().toString();
+                lightContextHttpManager.switchLight(light);
+            }
+        });
     }
 
 

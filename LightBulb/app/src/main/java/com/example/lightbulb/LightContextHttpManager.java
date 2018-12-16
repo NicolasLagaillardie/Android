@@ -57,7 +57,7 @@ public class LightContextHttpManager {
 
     public void switchLight(final String light){
 
-        String url =  "https://faircorp-paul-breugnot.cleverapps.io/api/lights/" + light + "switch";
+        String url =  "https://faircorp-paul-breugnot.cleverapps.io/api/lights/" + light + "/switch";
 
         RequestQueue queue = Volley.newRequestQueue(contextManagementActivity);
 
