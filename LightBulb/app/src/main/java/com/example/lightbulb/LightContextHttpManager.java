@@ -7,6 +7,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -92,26 +93,28 @@ public class LightContextHttpManager {
 
     public void deleteLight(final String light){
 
-        String url =  "https://faircorp-paul-breugnot.cleverapps.io/api/lights/" + light + "/switch";
+        String url =  "https://faircorp-paul-breugnot.cleverapps.io/api/lights/" + light;
 
         RequestQueue queue = Volley.newRequestQueue(contextManagementActivity);
 
-        JsonObjectRequest contextRequest = new JsonObjectRequest
-                (Request.Method.PUT, url, null, new Response.Listener<JSONObject>() {
-
+        StringRequest contextRequest = new StringRequest(Request.Method.DELETE, url,
+                new Response.Listener<String>()
+                {
                     @Override
-                    public void onResponse(JSONObject response) {
-
+                    public void onResponse(String response) {
+                        // response
                         contextManagementActivity.onDelete();
-
                     }
-                }, new Response.ErrorListener() {
-
+                },
+                new Response.ErrorListener()
+                {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Some error to access URL : Room may not exists...
+                        // error.
+
                     }
-                });
+                }
+        );
         queue.add(contextRequest);
 
     }
