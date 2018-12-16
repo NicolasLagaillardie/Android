@@ -118,4 +118,40 @@ public class LightContextHttpManager {
         queue.add(contextRequest);
 
     }
+
+    public void addLight(final JSONObject light){
+
+        String url =  "https://faircorp-paul-breugnot.cleverapps.io/api/lights/";
+
+        RequestQueue queue = Volley.newRequestQueue(contextManagementActivity);
+
+        JsonObjectRequest contextRequest = new JsonObjectRequest
+                (Request.Method.POST, url, light, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            int id = Integer.parseInt(response.get("id").toString());
+                            String status = response.get("status").toString();
+                            int level = Integer.parseInt(response.get("level").toString());
+                            int roomId = Integer.parseInt(response.get("roomId").toString());
+
+                            contextManagementActivity.onUpdate(new LightContextState(id, status, level, roomId));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Some error to access URL : Room may not exists...
+                    }
+                });
+        queue.add(contextRequest);
+
+    }
+
 }
