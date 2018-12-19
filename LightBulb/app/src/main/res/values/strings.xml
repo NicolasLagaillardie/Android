@@ -6,5 +6,8 @@
     <string name="roomId">Room ID</string>
     <string name="lightonoff">Light on/off</string>
     <string name="delete">Delete</string>
+    <string name="lights">Lights</string>
+    <string name="rooms">Rooms</string>
+    <string name="buildings">Buildings</string>
     <string name="image_content_description">light picture</string>
 </resources>

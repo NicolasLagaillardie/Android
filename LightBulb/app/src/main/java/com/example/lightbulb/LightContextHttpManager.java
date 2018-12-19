@@ -1,17 +1,25 @@
 package com.example.lightbulb;
 
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class LightContextHttpManager {
 
@@ -19,6 +27,54 @@ public class LightContextHttpManager {
 
     public LightContextHttpManager(ContextManagementActivity contextManagementActivity) {
         this.contextManagementActivity = contextManagementActivity;
+    }
+
+    private void warningMessage(VolleyError error){
+
+        CharSequence text = error.toString();
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(contextManagementActivity, text, duration * 10);
+        toast.show();
+    }
+
+    public void retrieveAllLights(){
+
+        String url =  "https://faircorp-paul-breugnot.cleverapps.io/api/lights/";
+
+        RequestQueue queue = Volley.newRequestQueue(contextManagementActivity);
+
+        JsonArrayRequest contextRequest = new JsonArrayRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+
+                            List listLights = new ArrayList();
+
+                            for (int i = 0; i < response.length(); ++i) {
+                                JSONObject rec = response.getJSONObject(i);
+                                int id = Integer.parseInt(rec.get("id").toString());
+                                listLights.add(id);
+                            }
+
+                            contextManagementActivity.onUpdateList(listLights);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        warningMessage(error);
+                    }
+                });
+        queue.add(contextRequest);
+
     }
 
     public void retrieveLightContextState(final String light){
@@ -49,7 +105,7 @@ public class LightContextHttpManager {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Some error to access URL : Room may not exists...
+                        warningMessage(error);
                     }
                 });
         queue.add(contextRequest);
@@ -84,7 +140,7 @@ public class LightContextHttpManager {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Some error to access URL : Room may not exists...
+                        warningMessage(error);
                     }
                 });
         queue.add(contextRequest);
@@ -110,8 +166,7 @@ public class LightContextHttpManager {
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // error.
-
+                        warningMessage(error);
                     }
                 }
         );
@@ -147,7 +202,7 @@ public class LightContextHttpManager {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Some error to access URL : Room may not exists...
+                        warningMessage(error);
                     }
                 });
         queue.add(contextRequest);
