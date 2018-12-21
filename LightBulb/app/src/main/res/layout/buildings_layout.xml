@@ -34,8 +34,8 @@
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_marginTop="32dp"
             android:background="@color/grey"
             android:orientation="vertical"
@@ -45,14 +45,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/enter_light"
+                    android:text="@string/enter_room"
                     android:textAlignment="center" />
 
                 <LinearLayout
@@ -62,10 +63,18 @@
                     android:orientation="horizontal">
 
                     <Spinner
-                        android:id="@+id/lights_spinner"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/rooms_spinner"
+                        android:layout_width="0dp"
                         android:layout_height="fill_parent"
-                        android:layout_weight="0.7" />
+                        android:layout_weight=".70" />
+
+                    <Button
+                        android:id="@+id/buttonCheckRoom"
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".30"
+                        android:text="@string/ok" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -73,7 +82,7 @@
 
             <RelativeLayout
                 android:id="@+id/contextLayout"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
@@ -86,27 +95,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="176dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="130dp"
                     android:padding="25dip">
 
                     <TableRow
-                        android:id="@+id/tableRowLight"
+                        android:id="@+id/tableRowName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5dip">
 
                         <TextView
-                            android:id="@+id/textViewLight"
+                            android:id="@+id/textViewName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
-                            android:text="@string/light"
+                            android:text="@string/name"
                             android:textAlignment="gravity"
                             android:textSize="24sp" />
 
                         <TextView
-                            android:id="@+id/textViewLightValue"
+                            android:id="@+id/textViewNameValue"
                             android:layout_width="125dp"
                             android:layout_height="wrap_content"
                             android:textColor="@color/red"
@@ -114,7 +124,30 @@
                     </TableRow>
 
                     <TableRow
-                        android:id="@+id/tableRowNoise"
+                        android:id="@+id/tableRowFloor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:id="@+id/textViewFloor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:text="@string/floor"
+                            android:textAlignment="gravity"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:id="@+id/textViewFloorValue"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/red"
+                            android:textSize="24sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRowBuildingId"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:padding="5dip">
@@ -124,12 +157,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
-                            android:text="@string/roomId"
+                            android:text="@string/buildingId"
                             android:textAlignment="gravity"
                             android:textSize="24sp" />
 
                         <TextView
-                            android:id="@+id/textViewRoomIdValue"
+                            android:id="@+id/textViewBuildingIdValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/red"
@@ -156,7 +189,7 @@
                     android:layout_centerHorizontal="true">
 
                     <Button
-                        android:id="@+id/buttonSwitchLight"
+                        android:id="@+id/buttonSwitchRoomLights"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -165,7 +198,7 @@
                         android:text="@string/lightonoff" />
 
                     <Button
-                        android:id="@+id/buttonDeleteLight"
+                        android:id="@+id/buttonDeleteRoom"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

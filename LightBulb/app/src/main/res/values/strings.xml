@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">LightBulb</string>
     <string name="enter_light">Enter light #</string>
+    <string name="enter_room">Enter room #</string>
     <string name="ok">Check</string>
     <string name="light">Light level</string>
     <string name="roomId">Room ID</string>
+    <string name="name">Name</string>
+    <string name="floor">Floor</string>
+    <string name="buildingId">Building ID</string>
     <string name="lightonoff">Light on/off</string>
     <string name="delete">Delete</string>
     <string name="lights">Lights</string>

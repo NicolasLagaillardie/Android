@@ -18,12 +18,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LightContextHttpManager {
+public class RoomContextHttpManager {
 
-    private LightContextManagementActivity lightContextManagementActivity;
+    private RoomContextManagementActivity roomContextManagementActivity;
 
-    public LightContextHttpManager(LightContextManagementActivity lightContextManagementActivity) {
-        this.lightContextManagementActivity = lightContextManagementActivity;
+    public RoomContextHttpManager(RoomContextManagementActivity roomContextManagementActivity) {
+        this.roomContextManagementActivity = roomContextManagementActivity;
     }
 
     private void warningMessage(VolleyError error) {
@@ -31,23 +31,15 @@ public class LightContextHttpManager {
         CharSequence text = error.toString();
         int duration = Toast.LENGTH_LONG;
 
-        Toast toast = Toast.makeText(lightContextManagementActivity, text, duration * 10);
+        Toast toast = Toast.makeText(roomContextManagementActivity, text, duration * 10);
         toast.show();
     }
 
-    public void checkValue(String text) {
+    public void retrieveAllRooms() {
 
-        int duration = Toast.LENGTH_LONG;
+        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/rooms/";
 
-        Toast toast = Toast.makeText(lightContextManagementActivity, text, duration * 10);
-        toast.show();
-    }
-
-    public void retrieveAllLights() {
-
-        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/lights/";
-
-        RequestQueue queue = Volley.newRequestQueue(lightContextManagementActivity);
+        RequestQueue queue = Volley.newRequestQueue(roomContextManagementActivity);
 
         JsonArrayRequest contextRequest = new JsonArrayRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -56,15 +48,15 @@ public class LightContextHttpManager {
                     public void onResponse(JSONArray response) {
                         try {
 
-                            List listLights = new ArrayList();
+                            List listRooms = new ArrayList();
 
                             for (int i = 0; i < response.length(); ++i) {
                                 JSONObject rec = response.getJSONObject(i);
                                 int id = Integer.parseInt(rec.get("id").toString());
-                                listLights.add(id);
+                                listRooms.add(id);
                             }
 
-                            lightContextManagementActivity.onUpdateLightList(listLights);
+                            roomContextManagementActivity.onUpdateRoomList(listRooms);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -82,11 +74,11 @@ public class LightContextHttpManager {
 
     }
 
-    public void retrieveLightContextState(final String light) {
+    public void retrieveLightContextState(final String room) {
 
-        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/lights/" + light;
+        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/rooms/" + room;
 
-        RequestQueue queue = Volley.newRequestQueue(lightContextManagementActivity);
+        RequestQueue queue = Volley.newRequestQueue(roomContextManagementActivity);
 
         JsonObjectRequest contextRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -95,11 +87,11 @@ public class LightContextHttpManager {
                     public void onResponse(JSONObject response) {
                         try {
                             int id = Integer.parseInt(response.get("id").toString());
-                            String status = response.get("status").toString();
-                            int level = Integer.parseInt(response.get("level").toString());
-                            int roomId = Integer.parseInt(response.get("roomId").toString());
+                            String name = response.get("name").toString();
+                            int floor = Integer.parseInt(response.get("floor").toString());
+                            int buildingId = Integer.parseInt(response.get("buildingId").toString());
 
-                            lightContextManagementActivity.onUpdateLight(new LightContextState(id, status, level, roomId));
+                            roomContextManagementActivity.onUpdateRoom(new RoomContextState(id, name, floor, buildingId));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -117,11 +109,11 @@ public class LightContextHttpManager {
 
     }
 
-    public void switchLight(final String light) {
+    public void switchLightRoom(final String room) {
 
-        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/lights/" + light + "/switch";
+        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/rooms/" + room + "/switch";
 
-        RequestQueue queue = Volley.newRequestQueue(lightContextManagementActivity);
+        RequestQueue queue = Volley.newRequestQueue(roomContextManagementActivity);
 
         JsonObjectRequest contextRequest = new JsonObjectRequest
                 (Request.Method.PUT, url, null, new Response.Listener<JSONObject>() {
@@ -130,11 +122,11 @@ public class LightContextHttpManager {
                     public void onResponse(JSONObject response) {
                         try {
                             int id = Integer.parseInt(response.get("id").toString());
-                            String status = response.get("status").toString();
-                            int level = Integer.parseInt(response.get("level").toString());
-                            int roomId = Integer.parseInt(response.get("roomId").toString());
+                            String name = response.get("name").toString();
+                            int floor = Integer.parseInt(response.get("floor").toString());
+                            int buildingId = Integer.parseInt(response.get("buildingId").toString());
 
-                            lightContextManagementActivity.onUpdateLight(new LightContextState(id, status, level, roomId));
+                            roomContextManagementActivity.onUpdateRoom(new RoomContextState(id, name, floor, buildingId));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -152,18 +144,18 @@ public class LightContextHttpManager {
 
     }
 
-    public void deleteLight(final String light) {
+    public void deleteRoom(final String room) {
 
-        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/lights/" + light;
+        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/rooms/" + room;
 
-        RequestQueue queue = Volley.newRequestQueue(lightContextManagementActivity);
+        RequestQueue queue = Volley.newRequestQueue(roomContextManagementActivity);
 
         StringRequest contextRequest = new StringRequest(Request.Method.DELETE, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        lightContextManagementActivity.onDeleteLight();
+                        roomContextManagementActivity.onDeleteRoom();
                     }
                 },
                 new Response.ErrorListener() {
@@ -177,24 +169,24 @@ public class LightContextHttpManager {
 
     }
 
-    public void addLight(final JSONObject light) {
+    public void addRoom(final JSONObject room) {
 
         String url = "https://faircorp-paul-breugnot.cleverapps.io/api/lights/";
 
-        RequestQueue queue = Volley.newRequestQueue(lightContextManagementActivity);
+        RequestQueue queue = Volley.newRequestQueue(roomContextManagementActivity);
 
         JsonObjectRequest contextRequest = new JsonObjectRequest
-                (Request.Method.POST, url, light, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, url, room, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             int id = Integer.parseInt(response.get("id").toString());
-                            String status = response.get("status").toString();
-                            int level = Integer.parseInt(response.get("level").toString());
-                            int roomId = Integer.parseInt(response.get("roomId").toString());
+                            String name = response.get("name").toString();
+                            int floor = Integer.parseInt(response.get("floor").toString());
+                            int buildingId = Integer.parseInt(response.get("buildingId").toString());
 
-                            lightContextManagementActivity.onUpdateLight(new LightContextState(id, status, level, roomId));
+                            roomContextManagementActivity.onUpdateRoom(new RoomContextState(id, name, floor, buildingId));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
