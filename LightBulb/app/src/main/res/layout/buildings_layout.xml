@@ -1,216 +1,185 @@
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/grey"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    android:padding="20dp">
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout_building"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_view" />
-
-
-    <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
-    <FrameLayout
-        android:id="@+id/content_frame"
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="match_parent">
+        android:layout_height="fill_parent"
+        android:layout_marginTop="32dp"
+        android:background="@color/grey"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="32dp"
-            android:background="@color/grey"
-            android:orientation="vertical"
-            android:padding="20dp">
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/enter_building"
+                android:textAlignment="center" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
+                <Spinner
+                    android:id="@+id/buildings_spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".70" />
+
+                <Button
+                    android:id="@+id/buttonCheckRoom"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/enter_room"
-                    android:textAlignment="center" />
+                    android:layout_weight=".30"
+                    android:text="@string/ok" />
+            </LinearLayout>
+        </LinearLayout>
 
-                <LinearLayout
+        <requestFocus />
+
+        <RelativeLayout
+            android:id="@+id/contextLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:visibility="visible">
+
+            <TableLayout
+                android:id="@+id/tableLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="130dp"
+                android:padding="25dip">
+
+                <TableRow
+                    android:id="@+id/tableRowName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:orientation="horizontal">
+                    android:padding="5dip">
 
-                    <Spinner
-                        android:id="@+id/rooms_spinner"
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_weight=".70" />
-
-                    <Button
-                        android:id="@+id/buttonCheckRoom"
-                        style="?android:attr/buttonStyleSmall"
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/textViewName"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight=".30"
-                        android:text="@string/ok" />
-                </LinearLayout>
-            </LinearLayout>
+                        android:layout_gravity="right"
+                        android:text="@string/name"
+                        android:textAlignment="gravity"
+                        android:textSize="24sp" />
 
-            <requestFocus />
+                    <TextView
+                        android:id="@+id/textViewNameValue"
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="24sp" />
+                </TableRow>
 
-            <RelativeLayout
-                android:id="@+id/contextLayout"
-                android:layout_width="fill_parent"
+                <TableRow
+                    android:id="@+id/tableRowFloor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:id="@+id/textViewFloor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="@string/floor"
+                        android:textAlignment="gravity"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/textViewFloorValue"
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowBuildingId"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:id="@+id/textViewRoomId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="@string/buildingId"
+                        android:textAlignment="gravity"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/textViewBuildingIdValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="24sp" />
+                </TableRow>
+            </TableLayout>
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tableLayout1"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:orientation="vertical"
-                android:padding="20dp"
-                android:visibility="visible">
+                android:layout_marginTop="32dp"
+                android:contentDescription="@string/image_content_description"
+                android:src="@drawable/ic_bulb_on" />
 
-                <TableLayout
-                    android:id="@+id/tableLayout1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="130dp"
-                    android:padding="25dip">
+            <LinearLayout
+                android:id="@+id/linearLayoutButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
 
-                    <TableRow
-                        android:id="@+id/tableRowName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dip">
-
-                        <TextView
-                            android:id="@+id/textViewName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:text="@string/name"
-                            android:textAlignment="gravity"
-                            android:textSize="24sp" />
-
-                        <TextView
-                            android:id="@+id/textViewNameValue"
-                            android:layout_width="125dp"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/red"
-                            android:textSize="24sp" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/tableRowFloor"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dip">
-
-                        <TextView
-                            android:id="@+id/textViewFloor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:text="@string/floor"
-                            android:textAlignment="gravity"
-                            android:textSize="24sp" />
-
-                        <TextView
-                            android:id="@+id/textViewFloorValue"
-                            android:layout_width="125dp"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/red"
-                            android:textSize="24sp" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/tableRowBuildingId"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:padding="5dip">
-
-                        <TextView
-                            android:id="@+id/textViewRoomId"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:text="@string/buildingId"
-                            android:textAlignment="gravity"
-                            android:textSize="24sp" />
-
-                        <TextView
-                            android:id="@+id/textViewBuildingIdValue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/red"
-                            android:textSize="24sp" />
-                    </TableRow>
-                </TableLayout>
-
-                <ImageView
-                    android:id="@+id/imageView1"
+                <Button
+                    android:id="@+id/buttonSwitchRoomLights"
+                    style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tableLayout1"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="32dp"
-                    android:contentDescription="@string/image_content_description"
-                    android:src="@drawable/ic_bulb_on" />
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginRight="14dp"
+                    android:text="@string/lightOnOff" />
 
-                <LinearLayout
-                    android:id="@+id/linearLayoutButtons"
+                <Button
+                    android:id="@+id/buttonDeleteRoom"
+                    style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true">
-
-                    <Button
-                        android:id="@+id/buttonSwitchRoomLights"
-                        style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:layout_marginRight="14dp"
-                        android:text="@string/lightonoff" />
-
-                    <Button
-                        android:id="@+id/buttonDeleteRoom"
-                        style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:layout_marginRight="14dp"
-                        android:text="@string/delete" />
-                </LinearLayout>
-
-            </RelativeLayout>
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginRight="14dp"
+                    android:text="@string/delete" />
+            </LinearLayout>
 
         </RelativeLayout>
 
-    </FrameLayout>
+    </RelativeLayout>
 
-</android.support.v4.widget.DrawerLayout>
+</android.support.constraint.ConstraintLayout>

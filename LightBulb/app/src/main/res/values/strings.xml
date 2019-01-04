@@ -1,17 +1,20 @@
 <resources>
-    <string name="app_name">LightBulb</string>
+    <string name="app_name">PixLED</string>
     <string name="enter_light">Enter light #</string>
     <string name="enter_room">Enter room #</string>
+    <string name="enter_building">Enter building #</string>
     <string name="ok">Check</string>
     <string name="light">Light level</string>
     <string name="roomId">Room ID</string>
     <string name="name">Name</string>
     <string name="floor">Floor</string>
     <string name="buildingId">Building ID</string>
-    <string name="lightonoff">Light on/off</string>
+    <string name="lightOnOff">Light on/off</string>
     <string name="delete">Delete</string>
     <string name="lights">Lights</string>
     <string name="rooms">Rooms</string>
     <string name="buildings">Buildings</string>
     <string name="image_content_description">light picture</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

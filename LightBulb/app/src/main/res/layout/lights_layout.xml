@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_layout_room"
+    android:id="@+id/drawer_layout_light"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/enter_room"
+                android:text="@string/enter_light"
                 android:textAlignment="center" />
 
             <LinearLayout
@@ -34,11 +34,10 @@
                 android:orientation="horizontal">
 
                 <Spinner
-                    android:id="@+id/rooms_spinner"
+                    android:id="@+id/lights_spinner"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:layout_weight=".70" />
-
+                    android:layout_weight="0.70" />
             </LinearLayout>
         </LinearLayout>
 
@@ -46,7 +45,7 @@
 
         <RelativeLayout
             android:id="@+id/contextLayout"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -61,26 +60,26 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="130dp"
+                android:layout_marginTop="176dp"
                 android:padding="25dip">
 
                 <TableRow
-                    android:id="@+id/tableRowName"
+                    android:id="@+id/tableRowLight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dip">
 
                     <TextView
-                        android:id="@+id/textViewName"
+                        android:id="@+id/textViewLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="@string/name"
+                        android:text="@string/light"
                         android:textAlignment="gravity"
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/textViewNameValue"
+                        android:id="@+id/textViewLightValue"
                         android:layout_width="125dp"
                         android:layout_height="wrap_content"
                         android:textColor="@color/red"
@@ -88,30 +87,7 @@
                 </TableRow>
 
                 <TableRow
-                    android:id="@+id/tableRowFloor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip">
-
-                    <TextView
-                        android:id="@+id/textViewFloor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:text="@string/floor"
-                        android:textAlignment="gravity"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/textViewFloorValue"
-                        android:layout_width="125dp"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/red"
-                        android:textSize="24sp" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowBuildingId"
+                    android:id="@+id/tableRowNoise"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:padding="5dip">
@@ -121,12 +97,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="@string/buildingId"
+                        android:text="@string/roomId"
                         android:textAlignment="gravity"
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/textViewBuildingIdValue"
+                        android:id="@+id/textViewRoomIdValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/red"
@@ -153,7 +129,7 @@
                 android:layout_centerHorizontal="true">
 
                 <Button
-                    android:id="@+id/buttonSwitchRoomLights"
+                    android:id="@+id/buttonSwitchLight"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -162,7 +138,7 @@
                     android:text="@string/lightOnOff" />
 
                 <Button
-                    android:id="@+id/buttonDeleteRoom"
+                    android:id="@+id/buttonDeleteLight"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

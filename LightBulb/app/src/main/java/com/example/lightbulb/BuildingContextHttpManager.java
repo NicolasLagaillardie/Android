@@ -18,11 +18,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LightContextHttpManager {
+public class BuildingContextHttpManager {
 
     private MainContextManagementActivity MainContextManagementActivity;
 
-    public LightContextHttpManager(MainContextManagementActivity MainContextManagementActivity) {
+    public BuildingContextHttpManager(MainContextManagementActivity MainContextManagementActivity) {
         this.MainContextManagementActivity = MainContextManagementActivity;
     }
 
@@ -35,17 +35,9 @@ public class LightContextHttpManager {
         toast.show();
     }
 
-    public void checkValue(String text) {
+    public void retrieveAllBuildings() {
 
-        int duration = Toast.LENGTH_LONG;
-
-        Toast toast = Toast.makeText(MainContextManagementActivity, text, duration * 10);
-        toast.show();
-    }
-
-    public void retrieveAllLights() {
-
-        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/lights/";
+        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/buildings/";
 
         RequestQueue queue = Volley.newRequestQueue(MainContextManagementActivity);
 
@@ -56,15 +48,15 @@ public class LightContextHttpManager {
                     public void onResponse(JSONArray response) {
                         try {
 
-                            List listLights = new ArrayList();
+                            List listBuildings = new ArrayList();
 
                             for (int i = 0; i < response.length(); ++i) {
                                 JSONObject rec = response.getJSONObject(i);
                                 int id = Integer.parseInt(rec.get("id").toString());
-                                listLights.add(id);
+                                listBuildings.add(id);
                             }
 
-                            MainContextManagementActivity.onUpdateLightList(listLights);
+                            MainContextManagementActivity.onUpdateBuildingList(listBuildings);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -82,9 +74,9 @@ public class LightContextHttpManager {
 
     }
 
-    public void retrieveLightContextState(final String light) {
+    public void retrieveBuildingContextState(final String building) {
 
-        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/lights/" + light;
+        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/buildings/" + building;
 
         RequestQueue queue = Volley.newRequestQueue(MainContextManagementActivity);
 
@@ -95,11 +87,9 @@ public class LightContextHttpManager {
                     public void onResponse(JSONObject response) {
                         try {
                             int id = Integer.parseInt(response.get("id").toString());
-                            String status = response.get("status").toString();
-                            int level = Integer.parseInt(response.get("level").toString());
-                            int roomId = Integer.parseInt(response.get("roomId").toString());
+                            String name = response.get("name").toString();
 
-                            MainContextManagementActivity.onUpdateLight(new LightContextState(id, status, level, roomId));
+                            MainContextManagementActivity.onUpdateBuilding(new BuildingContextState(id, name));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -117,9 +107,9 @@ public class LightContextHttpManager {
 
     }
 
-    public void switchLight(final String light) {
+    public void switchLightBuilding(final String building) {
 
-        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/lights/" + light + "/switch";
+        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/rooms/" + building + "/switch";
 
         RequestQueue queue = Volley.newRequestQueue(MainContextManagementActivity);
 
@@ -130,11 +120,11 @@ public class LightContextHttpManager {
                     public void onResponse(JSONObject response) {
                         try {
                             int id = Integer.parseInt(response.get("id").toString());
-                            String status = response.get("status").toString();
-                            int level = Integer.parseInt(response.get("level").toString());
-                            int roomId = Integer.parseInt(response.get("roomId").toString());
+                            String name = response.get("name").toString();
+                            int floor = Integer.parseInt(response.get("floor").toString());
+                            int buildingId = Integer.parseInt(response.get("buildingId").toString());
 
-                            MainContextManagementActivity.onUpdateLight(new LightContextState(id, status, level, roomId));
+                            MainContextManagementActivity.onUpdateRoom(new RoomContextState(id, name, floor, buildingId));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -152,9 +142,9 @@ public class LightContextHttpManager {
 
     }
 
-    public void deleteLight(final String light) {
+    public void deleteBuilding(final String building) {
 
-        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/lights/" + light;
+        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/building/" + building;
 
         RequestQueue queue = Volley.newRequestQueue(MainContextManagementActivity);
 
@@ -163,7 +153,7 @@ public class LightContextHttpManager {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        MainContextManagementActivity.onDeleteLight();
+                        MainContextManagementActivity.onDeleteRoom();
                     }
                 },
                 new Response.ErrorListener() {
@@ -177,24 +167,22 @@ public class LightContextHttpManager {
 
     }
 
-    public void addLight(final JSONObject light) {
+    public void addBuilding(final JSONObject room) {
 
-        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/lights/";
+        String url = "https://faircorp-paul-breugnot.cleverapps.io/api/building/";
 
         RequestQueue queue = Volley.newRequestQueue(MainContextManagementActivity);
 
         JsonObjectRequest contextRequest = new JsonObjectRequest
-                (Request.Method.POST, url, light, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, url, room, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             int id = Integer.parseInt(response.get("id").toString());
-                            String status = response.get("status").toString();
-                            int level = Integer.parseInt(response.get("level").toString());
-                            int roomId = Integer.parseInt(response.get("roomId").toString());
+                            String name = response.get("name").toString();
 
-                            MainContextManagementActivity.onUpdateLight(new LightContextState(id, status, level, roomId));
+                            MainContextManagementActivity.onUpdateBuilding(new BuildingContextState(id, name));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -211,5 +199,4 @@ public class LightContextHttpManager {
         queue.add(contextRequest);
 
     }
-
 }

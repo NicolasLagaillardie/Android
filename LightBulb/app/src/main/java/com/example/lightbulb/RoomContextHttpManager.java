@@ -20,10 +20,10 @@ import java.util.List;
 
 public class RoomContextHttpManager {
 
-    private RoomContextManagementActivity roomContextManagementActivity;
+    private MainContextManagementActivity MainContextManagementActivity;
 
-    public RoomContextHttpManager(RoomContextManagementActivity roomContextManagementActivity) {
-        this.roomContextManagementActivity = roomContextManagementActivity;
+    public RoomContextHttpManager(MainContextManagementActivity MainContextManagementActivity) {
+        this.MainContextManagementActivity = MainContextManagementActivity;
     }
 
     private void warningMessage(VolleyError error) {
@@ -31,7 +31,7 @@ public class RoomContextHttpManager {
         CharSequence text = error.toString();
         int duration = Toast.LENGTH_LONG;
 
-        Toast toast = Toast.makeText(roomContextManagementActivity, text, duration * 10);
+        Toast toast = Toast.makeText(MainContextManagementActivity, text, duration * 10);
         toast.show();
     }
 
@@ -39,7 +39,7 @@ public class RoomContextHttpManager {
 
         String url = "https://faircorp-paul-breugnot.cleverapps.io/api/rooms/";
 
-        RequestQueue queue = Volley.newRequestQueue(roomContextManagementActivity);
+        RequestQueue queue = Volley.newRequestQueue(MainContextManagementActivity);
 
         JsonArrayRequest contextRequest = new JsonArrayRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -56,7 +56,7 @@ public class RoomContextHttpManager {
                                 listRooms.add(id);
                             }
 
-                            roomContextManagementActivity.onUpdateRoomList(listRooms);
+                            MainContextManagementActivity.onUpdateRoomList(listRooms);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -74,11 +74,11 @@ public class RoomContextHttpManager {
 
     }
 
-    public void retrieveLightContextState(final String room) {
+    public void retrieveRoomContextState(final String room) {
 
         String url = "https://faircorp-paul-breugnot.cleverapps.io/api/rooms/" + room;
 
-        RequestQueue queue = Volley.newRequestQueue(roomContextManagementActivity);
+        RequestQueue queue = Volley.newRequestQueue(MainContextManagementActivity);
 
         JsonObjectRequest contextRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -91,7 +91,7 @@ public class RoomContextHttpManager {
                             int floor = Integer.parseInt(response.get("floor").toString());
                             int buildingId = Integer.parseInt(response.get("buildingId").toString());
 
-                            roomContextManagementActivity.onUpdateRoom(new RoomContextState(id, name, floor, buildingId));
+                            MainContextManagementActivity.onUpdateRoom(new RoomContextState(id, name, floor, buildingId));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -113,7 +113,7 @@ public class RoomContextHttpManager {
 
         String url = "https://faircorp-paul-breugnot.cleverapps.io/api/rooms/" + room + "/switch";
 
-        RequestQueue queue = Volley.newRequestQueue(roomContextManagementActivity);
+        RequestQueue queue = Volley.newRequestQueue(MainContextManagementActivity);
 
         JsonObjectRequest contextRequest = new JsonObjectRequest
                 (Request.Method.PUT, url, null, new Response.Listener<JSONObject>() {
@@ -126,7 +126,7 @@ public class RoomContextHttpManager {
                             int floor = Integer.parseInt(response.get("floor").toString());
                             int buildingId = Integer.parseInt(response.get("buildingId").toString());
 
-                            roomContextManagementActivity.onUpdateRoom(new RoomContextState(id, name, floor, buildingId));
+                            MainContextManagementActivity.onUpdateRoom(new RoomContextState(id, name, floor, buildingId));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -148,14 +148,14 @@ public class RoomContextHttpManager {
 
         String url = "https://faircorp-paul-breugnot.cleverapps.io/api/rooms/" + room;
 
-        RequestQueue queue = Volley.newRequestQueue(roomContextManagementActivity);
+        RequestQueue queue = Volley.newRequestQueue(MainContextManagementActivity);
 
         StringRequest contextRequest = new StringRequest(Request.Method.DELETE, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        roomContextManagementActivity.onDeleteRoom();
+                        MainContextManagementActivity.onDeleteRoom();
                     }
                 },
                 new Response.ErrorListener() {
@@ -173,7 +173,7 @@ public class RoomContextHttpManager {
 
         String url = "https://faircorp-paul-breugnot.cleverapps.io/api/lights/";
 
-        RequestQueue queue = Volley.newRequestQueue(roomContextManagementActivity);
+        RequestQueue queue = Volley.newRequestQueue(MainContextManagementActivity);
 
         JsonObjectRequest contextRequest = new JsonObjectRequest
                 (Request.Method.POST, url, room, new Response.Listener<JSONObject>() {
@@ -186,7 +186,7 @@ public class RoomContextHttpManager {
                             int floor = Integer.parseInt(response.get("floor").toString());
                             int buildingId = Integer.parseInt(response.get("buildingId").toString());
 
-                            roomContextManagementActivity.onUpdateRoom(new RoomContextState(id, name, floor, buildingId));
+                            MainContextManagementActivity.onUpdateRoom(new RoomContextState(id, name, floor, buildingId));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
