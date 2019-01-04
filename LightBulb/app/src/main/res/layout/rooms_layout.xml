@@ -80,7 +80,7 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/textViewNameValue"
+                        android:id="@+id/textViewNameRoomValue"
                         android:layout_width="125dp"
                         android:layout_height="wrap_content"
                         android:textColor="@color/red"

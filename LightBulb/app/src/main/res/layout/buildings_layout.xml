@@ -38,14 +38,6 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight=".70" />
-
-                <Button
-                    android:id="@+id/buttonCheckRoom"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".30"
-                    android:text="@string/ok" />
             </LinearLayout>
         </LinearLayout>
 
@@ -68,7 +60,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="130dp"
+                android:layout_marginTop="200dp"
                 android:padding="25dip">
 
                 <TableRow
@@ -87,58 +79,13 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/textViewNameValue"
-                        android:layout_width="125dp"
+                        android:id="@+id/textViewNameBuildingValue"
+                        android:layout_width="210dp"
                         android:layout_height="wrap_content"
                         android:textColor="@color/red"
                         android:textSize="24sp" />
                 </TableRow>
 
-                <TableRow
-                    android:id="@+id/tableRowFloor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip">
-
-                    <TextView
-                        android:id="@+id/textViewFloor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:text="@string/floor"
-                        android:textAlignment="gravity"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/textViewFloorValue"
-                        android:layout_width="125dp"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/red"
-                        android:textSize="24sp" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowBuildingId"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip">
-
-                    <TextView
-                        android:id="@+id/textViewRoomId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:text="@string/buildingId"
-                        android:textAlignment="gravity"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/textViewBuildingIdValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/red"
-                        android:textSize="24sp" />
-                </TableRow>
             </TableLayout>
 
             <ImageView
@@ -160,7 +107,7 @@
                 android:layout_centerHorizontal="true">
 
                 <Button
-                    android:id="@+id/buttonSwitchRoomLights"
+                    android:id="@+id/buttonSwitchBuildingLights"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -169,7 +116,7 @@
                     android:text="@string/lightOnOff" />
 
                 <Button
-                    android:id="@+id/buttonDeleteRoom"
+                    android:id="@+id/buttonDeleteBuilding"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

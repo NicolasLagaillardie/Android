@@ -29,9 +29,8 @@ public class BuildingContextHttpManager {
     private void warningMessage(VolleyError error) {
 
         CharSequence text = error.toString();
-        int duration = Toast.LENGTH_LONG;
 
-        Toast toast = Toast.makeText(MainContextManagementActivity, text, duration * 10);
+        Toast toast = Toast.makeText(MainContextManagementActivity, text, Toast.LENGTH_LONG);
         toast.show();
     }
 
@@ -86,6 +85,7 @@ public class BuildingContextHttpManager {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+
                             int id = Integer.parseInt(response.get("id").toString());
                             String name = response.get("name").toString();
 

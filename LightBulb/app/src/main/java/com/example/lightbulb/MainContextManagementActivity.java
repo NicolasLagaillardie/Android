@@ -155,22 +155,22 @@ public class MainContextManagementActivity extends AppCompatActivity implements 
         } else if (id == R.id.nav_buildings) {
             vf.setDisplayedChild(2);
             // FOR ROOMS ------------------------------------------------------------------------------
-            final Spinner spinnerRoom = (Spinner) findViewById(R.id.buildings_spinner);
+            final Spinner spinnerBuilding = (Spinner) findViewById(R.id.buildings_spinner);
 
-            spinnerRoom.setOnItemSelectedListener(this);
+            spinnerBuilding.setOnItemSelectedListener(this);
 
             buildingContextHttpManager.retrieveAllBuildings();
 
-            ((Button) findViewById(R.id.buttonSwitchRoomLights)).setOnClickListener(new View.OnClickListener() {
+            ((Button) findViewById(R.id.buttonSwitchBuildingLights)).setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    String room = spinnerRoom.getSelectedItem().toString();
-                    roomContextHttpManager.switchLightRoom(room);
+                    String room = spinnerBuilding.getSelectedItem().toString();
+                    buildingContextHttpManager.switchLightBuilding(room);
                 }
             });
-            ((Button) findViewById(R.id.buttonDeleteRoom)).setOnClickListener(new View.OnClickListener() {
+            ((Button) findViewById(R.id.buttonDeleteBuilding)).setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    String room = spinnerRoom.getSelectedItem().toString();
-                    roomContextHttpManager.deleteRoom(room);
+                    String room = spinnerBuilding.getSelectedItem().toString();
+                    buildingContextHttpManager.deleteBuilding(room);
                 }
             });
         }
@@ -248,7 +248,7 @@ public class MainContextManagementActivity extends AppCompatActivity implements 
 
     public void onUpdateRoom(RoomContextState context) {
 
-        ((TextView) findViewById(R.id.textViewNameValue)).setText(String.valueOf(context.getName()));
+        ((TextView) findViewById(R.id.textViewNameRoomValue)).setText(String.valueOf(context.getName()));
         ((TextView) findViewById(R.id.textViewFloorValue)).setText(String.valueOf(context.getFloor()));
         ((TextView) findViewById(R.id.textViewBuildingIdValue)).setText(String.valueOf(context.getBuildingId()));
 
@@ -274,7 +274,7 @@ public class MainContextManagementActivity extends AppCompatActivity implements 
 
     public void onDeleteRoom() {
 
-        ((TextView) findViewById(R.id.textViewNameValue)).setText("");
+        ((TextView) findViewById(R.id.textViewNameRoomValue)).setText("");
         ((TextView) findViewById(R.id.textViewFloorValue)).setText("");
         ((TextView) findViewById(R.id.textViewBuildingIdValue)).setText("");
 
@@ -286,7 +286,7 @@ public class MainContextManagementActivity extends AppCompatActivity implements 
 
     public void onUpdateBuilding(BuildingContextState context) {
 
-        ((TextView) findViewById(R.id.textViewNameValue)).setText(String.valueOf(context.getName()));
+        ((TextView) findViewById(R.id.textViewNameBuildingValue)).setText(String.valueOf(context.getName()));
 
     }
 
@@ -310,7 +310,7 @@ public class MainContextManagementActivity extends AppCompatActivity implements 
 
     public void onDeleteBuilding() {
 
-        ((TextView) findViewById(R.id.textViewNameValue)).setText("");
+        ((TextView) findViewById(R.id.textViewNameBuildingValue)).setText("");
 
         ((ImageView) findViewById(R.id.imageView1)).setImageResource(R.drawable.ic_bulb_off);
 
